@@ -1,8 +1,8 @@
 import { StyledInputField } from "./InputField.styles";
 
 
-const Button = () => {
+const InputField = () => {
 	return <StyledInputField></StyledInputField>;
 };
 
-export default Button;
+export default InputField;
