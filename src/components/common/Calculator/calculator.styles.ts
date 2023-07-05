@@ -1,3 +1,4 @@
+import { CACLCULATOR_COLUMNS } from "@/constants/calc";
 import { css, styled } from "styled-components";
 
 export const Styledcalculator = styled.div`
@@ -8,10 +9,9 @@ export const Styledcalculator = styled.div`
 		background-color: ${theme.color.black};
 		color: ${theme.color.white};	
 
-        form {		
+        div {		
             display: grid;
-            grid-template-columns: repeat(4, calc(100% / 4 - 10px)) ;
-            grid-template-rows: repeat(6, calc(100% / 6 - 10px)) ;
+            grid-template-columns: repeat(${CACLCULATOR_COLUMNS}, 1fr);
             gap: 10px;
             justify-content: space-between;
             height: 100%;

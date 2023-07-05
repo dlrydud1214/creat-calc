@@ -1,18 +1,23 @@
+import { useState } from "react";
 import { css, styled } from "styled-components";
 
-type childrenProps = {
-	halfWidth?: boolean;
+export type buttonProps = {
+	halfwidth?: boolean;
 	fullWidth?: boolean;
 	color?: "fill-amber-900" | "fill-gray-300" | "fill-gray-800";
 }
 
-const Button = styled.button<childrenProps>`
+
+const Button = styled.button<buttonProps>`
 		display: inline-flex;
 		justify-content: center;
 		align-items: center;
 		height: 100%;
 		width: 100%;
 		border-radius: 999px;
+		&:active {
+			opacity : .8
+		}
 
 	${({ color, theme }) => {
 	switch (color) {
@@ -34,12 +39,12 @@ const Button = styled.button<childrenProps>`
 			`;
 		}
 	}}
-	${({ halfWidth }) =>
-		halfWidth &&
+	${({ halfwidth }) =>
+		halfwidth &&
 	css`
-		grid-column-start: 1;
-		grid-column-end: 3;
+		grid-column: span 2;
 	`};
+	
 	${({ fullWidth }) =>
 		fullWidth &&
 	css`

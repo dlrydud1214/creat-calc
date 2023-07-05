@@ -8,7 +8,7 @@ export const StyledInputField = styled.input`
 		border: none;
 		box-sizing: border-box;
 		padding: 0 30px;
-		${theme.typography.body1};
+		font-size: ${theme.font.pxToRem(30)};
 		text-align: right;
 		border-radius: 99px;
 		grid-column-start: 1;
