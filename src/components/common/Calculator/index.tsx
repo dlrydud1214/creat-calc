@@ -1,36 +1,37 @@
-import Button, { buttonProps } from "@/components/common/Button";
+import Button from "@/components/common/Button";
 import InputField from "@/components/common/InputField";
 import { Styledcalculator } from "./calculator.styles";
 import { useState } from "react";
-import { type } from "os";
 import { calcArr } from "@/constants/calc";
-
-// interface childrenProps {
-// 	children: React.ReactNode;
-// }
+import { CalcItemType } from "@/type/calc";
 
 const Calculator = () => {
 	const [inputValue, setInputValue] = useState<string>("");
-	const handleOnClick = () => {
-	console.log(inputValue);
-	}
-
-	const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setInputValue(e.target.value);
-		console.log(inputValue)
-	}
+	const [funcStack,setFuncStack] = useState<CalcItemType[]>([]);
 
 	return (
 		<Styledcalculator>
 			<div>
-				<InputField value={inputValue} onChange={handleChangeValue} />
-				{calcArr.map(({color, halfwidth, value}, index) => {
+				<InputField value={funcStack.map(item => item.value).join('')} />
+				{calcArr.map((calcItem, index) => {
+					const {color, halfwidth, value} = calcItem
 					return (
 						<Button 
 							color={color} 
 							halfwidth={halfwidth}
 							key={value}
-							onClick={() => handleOnClick()}
+							onClick={() => {
+								if(calcItem.type === "operator"){
+									setFuncStack((prev) => {
+										if( prev.length && prev[prev.length-1].type !== "operator" ){
+											return [...prev, calcItem];
+										} 
+										return prev;
+									});
+								} else if (calcItem.type === "number") {
+									setFuncStack((prev)=>[...prev, calcItem]);
+								}
+							}}
 						> 
 							{value}
 						</Button>

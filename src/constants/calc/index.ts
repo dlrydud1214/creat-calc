@@ -1,8 +1,8 @@
-import { calcItemType } from "@/type/calc";
+import { CalcItemType } from "@/type/calc";
 
 export const CACLCULATOR_COLUMNS = 4;
 
-export const calcArr:calcItemType[] = [ 
+export const calcArr:CalcItemType[] = [ 
     {
         type: 'operator',
         value : 'AC',
